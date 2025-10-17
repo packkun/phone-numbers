@@ -1,0 +1,209 @@
+{
+  "info": {
+    "name": "Phone Numbers API",
+    "description": "Коллекция для тестирования API управления номерами телефонов",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "password",
+      "value": "changeme",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Get Phones",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/phones?limit=10&password={{password}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "phones"],
+          "query": [
+            {
+              "key": "limit",
+              "value": "10"
+            },
+            {
+              "key": "password",
+              "value": "{{password}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Phones by Prefix",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/phones?prefix=+7&limit=5&password={{password}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "phones"],
+          "query": [
+            {
+              "key": "prefix",
+              "value": "+7"
+            },
+            {
+              "key": "limit",
+              "value": "5"
+            },
+            {
+              "key": "password",
+              "value": "{{password}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add Single Phone",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "phone_number",
+              "value": "+79001234567",
+              "type": "text"
+            },
+            {
+              "key": "name",
+              "value": "Тестовый номер",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "{{password}}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/phones",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "phones"]
+        }
+      }
+    },
+    {
+      "name": "Bulk Add Phones",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "numbers",
+              "value": "+79001234567\n+79001234568\n+79001234569",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "{{password}}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/phones/bulk",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "phones", "bulk"]
+        }
+      }
+    },
+    {
+      "name": "Upload File",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "sample_phones.txt"
+            },
+            {
+              "key": "password",
+              "value": "{{password}}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/phones/upload",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "phones", "upload"]
+        }
+      }
+    },
+    {
+      "name": "Edit Phone",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "phone_number",
+              "value": "+79001234599",
+              "type": "text"
+            },
+            {
+              "key": "name",
+              "value": "Обновленный номер",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "{{password}}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/phones/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "phones", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete Phone",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "password",
+              "value": "{{password}}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/phones/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "phones", "1"]
+        }
+      }
+    }
+  ]
+}
